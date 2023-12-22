@@ -1,8 +1,7 @@
-# React + Vite
+# PokeData
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En este proyecto se puede obtener información de los pokemon.
 
-Currently, two official plugins are available:
+Se utliza la API [PokeAPi](https://pokeapi.co/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Al seleccionar cada card se puede obtener más información como que tipo es y sus estadísticas base.
