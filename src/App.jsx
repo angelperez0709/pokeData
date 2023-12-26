@@ -18,20 +18,29 @@ function App() {
     if (isLoading) {
       return;
     }
+    if(offset >= 1302){
+      setIsLoading(false)
+      return;
+    }
     setIsLoading(true);
     getPokemons({ offset }).then((results) => {
-      setPokemonList((prevPokemons) => [...prevPokemons, ...results.results]);
-      setOffset((prevOffset) => prevOffset + 100);
-      setIsLoading(false);
+    setIsLoading(false);
+    setPokemonList((prevPokemons) => [...prevPokemons, ...results.results]);
+    setOffset((prevOffset) => prevOffset + 100);
     });
   }, [offset, isLoading]);
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const target = entries[0];
-      if (target.isIntersecting) {
-        fetchData();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const target = entries[0];
+        if (target.isIntersecting) {
+          fetchData();
+        }
+      },
+      {
+        rootMargin: "100px",
       }
-    });
+    );
 
     if (loaderRef.current) {
       observer.observe(loaderRef.current);
@@ -47,7 +56,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      getPokemons({offset}).then((results) => {
+      getPokemons({ offset }).then((results) => {
         setPokemonList((prevPokemons) => [...prevPokemons, ...results.results]);
         setOffset((prevOffset) => prevOffset + 100);
         setIsLoading(false);
@@ -55,15 +64,16 @@ function App() {
     };
     getData();
   }, []);
+
   return (
     <>
       {pokemonData.id > 0 && pokemonData.pokemon != "" && (
-        <PokemonDataCard pokemonData={pokemonData}></PokemonDataCard>
+        <PokemonDataCard></PokemonDataCard>
       )}
       <Header></Header>
       <PokemonList pokemonData={pokemonList}></PokemonList>
       <div className="grid place-content-center" ref={loaderRef}>
-        {<Loader />}
+        {isLoading && <Loader />}
       </div>
     </>
   );

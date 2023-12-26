@@ -38,7 +38,7 @@ export default function PokemonDataCard() {
   const elemento = useRef();
   let tweenRef = useRef();
   useEffect(() => {
-    tweenRef.current = gsap.to(elemento.current, { duration: 1.1, opacity: 1 });
+    tweenRef.current = gsap.to(elemento.current, { duration: 0.9, opacity: 1 });
   }, []);
   const handleClick = () => {
     tweenRef.current.reverse();
@@ -104,7 +104,7 @@ export default function PokemonDataCard() {
                   key={pokemonData.id + type.type.name}
                   className="capitalize"
                 >
-                  {type.type.name}
+                  - {type.type.name}
                 </div>
               ))}
             </div>
